@@ -3,11 +3,11 @@ import Layout from '@/layout'
 const meta = {
   auth: true,
   title: '喝',
+  isSole:false,
   icon:'el-icon-star-off'
 }
 export default {
   path: '/drink/alcohol',
-  name: 'drink',
   redirect: {
     name: 'alcohol',
     title: '喝'

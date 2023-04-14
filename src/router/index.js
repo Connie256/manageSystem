@@ -2,12 +2,14 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import eat from './eat'
 import drink from './drink'
+import play from './play'
 Vue.use(VueRouter)
 
 const routes = [
   eat,
   drink,
-  { path: '*', redirect: '/eat/rice', hidden: true }
+  play,
+  { path: '*', redirect: '/eat/rice', hidden: true },
 
 ]
 

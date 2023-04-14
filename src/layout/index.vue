@@ -22,11 +22,12 @@
       </el-header>
       <el-container>
         <el-aside :style="{width:isCollapse?'70px':'200px'}" class="myAside">
-          <el-menu :collapse="isCollapse" mode="vertical"
-                   :collapse-transition="false" :default-active="currentPath" :unique-opened="false"
+          <el-menu :collapse="isCollapse" :collapse-transition="false"
+                   :default-active="currentPath" :unique-opened="false" mode="vertical"
                    router>
             <div v-for="(cur ,cIndex) of menuList" :key="cur.path">
-              <el-submenu v-if="cur.children.length>0" :index="cur.path">
+              <el-submenu v-if="cur.hasOwnProperty('children')&&cur.children.length>0&&(!cur.meta.isSole)"
+                          :index="cur.path">
                 <template slot="title">
                   <i :class="cur.meta.icon"></i>
                   <span slot="title">{{ cur.meta.title }}</span>
@@ -42,7 +43,8 @@
               </el-submenu>
 
               <el-menu-item v-else :index="cur.path" @click="toPage(cur.path)">
-                {{ cur.meta.title }}
+                <i :class="cur.meta.icon"></i>
+                <span>{{ cur.meta.title }}</span>
                 <!--              <a :href="`#${cur.path}`" :title="cur.name">-->
                 <!--                <span slot="title"> {{ cur.meta.title }}</span>-->
                 <!--              </a>-->
@@ -56,8 +58,14 @@
         <el-main class="myMain">
           <div class="myBreadcrumb">
             <el-breadcrumb separator="/">
-              <el-breadcrumb-item v-for="crumb in breadcrumbList" :to="{path:crumb.path}">{{ crumb.meta.title }}
-              </el-breadcrumb-item>
+              <template v-if="!breadcrumbList[0].meta.isSole">
+                <el-breadcrumb-item v-for="crumb in breadcrumbList" :to="{path:crumb.path}">{{ crumb.meta.title }}
+                </el-breadcrumb-item>
+              </template>
+              <template v-else>
+                <el-breadcrumb-item :to="{path:breadcrumbList[0].path}">{{ breadcrumbList[0].meta.title }}
+                </el-breadcrumb-item>
+              </template>
             </el-breadcrumb>
           </div>
 
@@ -93,6 +101,7 @@ export default {
       handler (val, oldval) {
         this.currentPath = val.path
         this.breadcrumbList = val.matched
+        console.log(this.breadcrumbList, 'this.breadcrumbList')
       },
       // 深度观察监听
       deep: true,
@@ -146,7 +155,7 @@ export default {
     let routerList = []
     if (list && list.length > 0) {
       list.forEach(item => {
-        if (item.path.indexOf('/eat') != -1 || item.path.indexOf('/drink') != -1) {
+        if (item.path.indexOf('/eat') != -1 || item.path.indexOf('/drink') != -1 || item.path.indexOf('/play') != -1) {
           routerList.push(item)
         }
       })
@@ -167,6 +176,10 @@ export default {
   color: #fff;
   align-items: center;
 
+  .leftHeader {
+    font-size: 24px;
+  }
+
   .rightHeader {
     .el-dropdown {
       color: #fff;
@@ -181,7 +194,22 @@ export default {
   background-color: #fff;
 
   .el-menu--collapse.el-menu {
-    .el-submenu__title {
+    .el-submenu.is-active {
+      background-color: $color-primary-h;
+      color: $color-primary;
+
+      &::after {
+        position: absolute;
+        right: 0;
+        top: 0;
+        content: '';
+        width: 5px;
+        height: 100%;
+        background-color: $color-primary;
+      }
+    }
+
+    .el-submenu__title, .el-menu-item {
       span {
         display: none;
       }
@@ -196,6 +224,7 @@ export default {
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
   }
+
 
 
   .el-menu {
