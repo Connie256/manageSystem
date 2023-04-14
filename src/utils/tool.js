@@ -19,25 +19,37 @@ export function dateFormat(dates) {
   let ss = date.getSeconds() < 10 ? '0' + date.getSeconds() : date.getSeconds();
   return YY + MM + DD +' '+ hh + mm + ss;
 }
-
 /**
- * 将描述转化为时分秒
+ * html剔除富文本标签，留下纯文本
  */
-export function formateTime(time) {
+export function getSimpleText(html) {
+  var re1 = new RegExp("<.+?>","g");//匹配html标签的正则表达式，"g"是搜索匹配多个符合的内容
+  var msg = html.replace(re1,'');//执行替换成空字符
+  return msg;
+}
+/**
+ * 将秒数转化为时分秒
+ */
+export function formateTime(time,isChat) {
   const h = parseInt(time / 3600)
   const minute = parseInt(time / 60 % 60)
   const second = Math.ceil(time % 60)
 
   const hours = h < 10 ? '0' + h : h
   const formatSecond = second > 59 ? 59 : second
-  return `${hours > 0 ? `${hours}:` : '00:'}${minute < 10 ? '0' + minute : minute}:${formatSecond < 10 ? '0' + formatSecond : formatSecond}`
+  if(isChat) {
+    return `${hours > 0 ? `${hours}时` : ''}${minute > 0 ? `${minute}分` : ''}${formatSecond > 0? `${minute}秒` : '--秒'}`
+  }else {
+    return `${hours > 0 ? `${hours}:` : '00:'}${minute < 10 ? '0' + minute : minute}:${formatSecond < 10 ? '0' + formatSecond : formatSecond}`
+  }
+
 }
 
 
 
 /**
  * 获取传递的日期距离当前日期的时间差值
- * @param {Date} optionTime 
+ * @param {Date} optionTime
  * @returns 距离当前时间差描述
  */
 export function differTime(optionTime) { //d1作为一个变量传进来

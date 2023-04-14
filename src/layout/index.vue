@@ -177,7 +177,7 @@ export default {
 
 .myAside {
   position: relative;
-  min-height: calc(100vh - 60px - 32px);
+  min-height: calc(100vh - 60px - 44px);
   background-color: #fff;
 
   .el-menu--collapse.el-menu {
@@ -263,7 +263,7 @@ export default {
 }
 
 .myFooter {
-  height: 32px !important;
+  height: 44px !important;
   background-color: $header-footer-color;
   color: #fff;
   display: flex;
