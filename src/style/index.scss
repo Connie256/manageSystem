@@ -1,3 +1,24 @@
 @import "./reset.scss";
 @import "./variables.scss";
 //import './assets/iconfont/iconfont.css';引入iconfont
+// 修改弹出层激活的样式
+//.el-menu--popup > ul:has(.is-active){
+//   background-color: $color-primary-h !important;
+// }
+//// 修改弹出层hover样式
+//.el-menu--popup > ul:has(.el-menu-item):hover{
+//  background-color: $color-primary-h !important;
+//  color: $color-primary !important;
+//}
+
+  .el-menu--popup {
+    .el-menu-item.is-active{
+      color:$color-primary!important;
+    }
+    .el-menu-item:hover, .el-menu-item:focus {
+      color: $color-primary !important;
+      background-color: $color-primary-h !important;
+      z-index:9999;
+    }
+  }
+

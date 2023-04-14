@@ -2,7 +2,8 @@ import Layout from '@/layout'
 // 基础数据页面路由
 const meta = {
   auth: true,
-  title: '吃'
+  title: '吃',
+  icon:'el-icon-goods'
 }
 export default {
   path: '/eat/rice',

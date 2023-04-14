@@ -4,6 +4,8 @@
 
 // 页面背景色
 $page-color: #f6f6f6;
+//头部底部背景颜色
+$header-footer-color:rgba(27, 102, 230,1);
 /* 字体相关颜色 */
 $color-base: #666;  // 基础色#666
 $color-dark: #fff;  // 深色#262626
@@ -12,8 +14,8 @@ $color-light: rgba(255, 255, 255, 0.80);  // 浅色
 $color-disabled: #C0C4CC;  // 禁用颜色
 
 /* 行为相关颜色 */
-$color-primary: rgba(24,144,255,1);
-$color-primary-h:rgba(24,144,255,.2) ; // 鼠标移入颜色#40A9FF
+$color-primary: rgba(240, 173, 78,1);
+$color-primary-h:rgba(240, 173, 78,.2) ; // 鼠标移入颜色#40A9FF
 $color-primary-c: #096DD9; // 点击颜色
 $color-primary-d: #CAE1F7; // 禁用颜色
 

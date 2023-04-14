@@ -22,14 +22,13 @@
       </el-header>
       <el-container>
         <el-aside :style="{width:isCollapse?'70px':'200px'}" class="myAside">
-          <el-menu :collapse="isCollapse"
+          <el-menu :collapse="isCollapse" mode="vertical"
                    :collapse-transition="false" :default-active="currentPath" :unique-opened="false"
                    router>
             <div v-for="(cur ,cIndex) of menuList" :key="cur.path">
-              <el-submenu v-if="cur.children.length>0" :class="currentPath.includes(cur.path)?'subMenuStyle':''"
-                          :index="cur.path">
+              <el-submenu v-if="cur.children.length>0" :index="cur.path">
                 <template slot="title">
-                  <i class="el-icon-location"></i>
+                  <i :class="cur.meta.icon"></i>
                   <span slot="title">{{ cur.meta.title }}</span>
                 </template>
                 <template v-for="(item, num) of cur.children">
@@ -162,7 +161,7 @@ export default {
 @import "@/style/variables.scss";
 
 .myHeader {
-  background-color: #2c3e50;
+  background-color: $header-footer-color;
   display: flex;
   justify-content: space-between;
   color: #fff;
@@ -187,21 +186,30 @@ export default {
         display: none;
       }
     }
-  }
 
-  ::v-deep .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
-    display: none;
+    ::v-deep .el-submenu > .el-submenu__title .el-submenu__icon-arrow {
+      display: none;
 
+    }
   }
 
   .el-menu-vertical-demo:not(.el-menu--collapse) {
     width: 200px;
   }
 
+
   .el-menu {
     border-right: none;
 
-    .subMenuStyle {
+    ::v-deep .el-submenu__title:hover {
+      background-color: $color-primary-h;
+    }
+
+    .el-menu-item:focus, .el-menu-item:hover {
+      background-color: $color-primary-h;
+    }
+
+    .el-submenu.is-active {
       ::v-deep .el-submenu__title {
         color: $color-primary;
 
@@ -219,6 +227,7 @@ export default {
 
     .el-menu-item.is-active {
       background-color: $color-primary-h;
+      color: $color-primary;
 
       &::after {
         position: absolute;
@@ -255,7 +264,7 @@ export default {
 
 .myFooter {
   height: 32px !important;
-  background-color: #2c3e50;
+  background-color: $header-footer-color;
   color: #fff;
   display: flex;
   justify-content: flex-end;

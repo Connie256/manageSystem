@@ -2,7 +2,8 @@ import Layout from '@/layout'
 // 基础数据页面路由
 const meta = {
   auth: true,
-  title: '喝'
+  title: '喝',
+  icon:'el-icon-star-off'
 }
 export default {
   path: '/drink/alcohol',
