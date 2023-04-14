@@ -1,0 +1,136 @@
+/*
+ * 全局reset样式
+ */
+@import "@/style/variables.scss";
+* {
+  box-sizing: border-box;
+}
+
+body {
+  font            : 14px/1.5 -apple-system,'PingFangSC-Regular', 'PingFang SC',"Helvetica Neue", Helvetica, Arial, "Hiragino Sans GB", "Heiti SC", "Microsoft YaHei", "WenQuanYi Micro Hei", sans-serif;
+  color           : $color-base;
+  background-color: $page-color;
+  margin          : 0;
+  padding         : 0;
+
+  overflow: overlay;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+a {
+  color          : $color-base;
+  text-decoration: none;
+  cursor         : pointer;
+}
+
+a:active,
+a:focus {
+  text-decoration: none;
+  color          : $color-primary;
+}
+
+a:hover {
+  text-decoration: none;
+  color          : $color-primary;
+}
+
+a:active,
+a:focus,
+input,
+select,
+textarea {
+  outline: none;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+  line-height: 1;
+  color      : $color-base;
+  font-weight: normal;
+}
+
+ul,
+ol {
+  list-style-type: none
+}
+
+li {
+  *vertical-align: top;
+}
+
+div,
+a,
+p,
+b,
+em,
+i,
+strong,
+span,
+img,
+ul,
+li,
+ol,
+dl,
+dt,
+dd,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+input,
+form {
+  margin : 0;
+  padding: 0;
+}
+
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+main,
+nav,
+section,
+summary {
+  display: block;
+}
+
+img {
+  border        : none;
+  vertical-align: top;
+}
+
+i,
+em {
+  font-style     : normal;
+  text-decoration: none;
+}
+
+input,
+select,
+textarea {
+  outline: none;
+}
+textarea {
+  font-size: 14px !important;
+	font-family: "Helvetica Neue",Helvetica,"PingFang SC","Hiragino Sans GB","Microsoft YaHei","微软雅黑",Arial,sans-serif;
+}
